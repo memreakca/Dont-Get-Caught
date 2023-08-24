@@ -60,15 +60,17 @@ public class AsassinMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(horizontalInput, verticalInput);
 
-        //if (movement.magnitude > 1f) 
-        //{
-        //    movement.Normalize();
-        //}
+        if (movement.magnitude > 1f)
+        {
+            movement.Normalize();
+        }
 
+        rb.velocity = movement * moveSpeed;
         movement *= moveSpeed * Time.deltaTime;
         Vector2 newPosition = rb.position + movement;
 
-        rb.MovePosition(newPosition);
+        
+        //rb.MovePosition(newPosition);
 
         if (horizontalInput > 0 && !hasRotatedright)
         {
@@ -119,7 +121,10 @@ public class AsassinMovement : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemy)
         {
-            Enemy.main.takeDamage(attackDamage);
+            if(enemy.TryGetComponent<Enemy>(out var e))
+            {
+                e.takeDamage(attackDamage);
+            }
         }
 
     }

@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pilayer
+    uniqueID: 2525902223
+    locked: 0
