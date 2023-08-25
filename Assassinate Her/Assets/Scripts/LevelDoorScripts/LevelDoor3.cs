@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelDoor2 : MonoBehaviour
+public class LevelDoor3 : MonoBehaviour
 {
-
     [SerializeField] GameObject MenuCanvas;
 
 
@@ -14,8 +13,8 @@ public class LevelDoor2 : MonoBehaviour
         if (other.CompareTag("Assassin"))
         {
             MenuCanvas.SetActive(true);
-            Level.level3lock = true;
-
+            Level.level4lock = true;
+            Time.timeScale = 0;
         }
     }
 

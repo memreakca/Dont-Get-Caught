@@ -6,22 +6,20 @@ using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
    
-
+    
     [SerializeField] GameObject EntryScreen;
     [SerializeField] GameObject MainMenuScreen;
     [SerializeField] GameObject LockScreen;
 
     public static bool level2lock;
     public static bool level3lock;
-    public bool level4lock;
-    public bool level5lock;
-    public bool level6lock;
-    public bool level7lock;
-    public bool level8lock;
-    public bool level9lock;
-    public bool level10lock;
-
-    
+    public static bool level4lock;
+    public static bool level5lock;
+    public static bool level6lock;
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     public void EntryButton()
     {
         EntryScreen.SetActive(false);
@@ -52,6 +50,14 @@ public class Level : MonoBehaviour
 
     }
 
+    public void LoadLevel4()
+    {
+        if (level4lock)
+            SceneManager.LoadScene("Level4");
+        else
+            LockScreen.SetActive(true);
+
+    }
     public void lockScreen()
     {
         LockScreen.SetActive(false);

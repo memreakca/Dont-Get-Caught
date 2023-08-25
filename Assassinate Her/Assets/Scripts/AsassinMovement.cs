@@ -16,7 +16,8 @@ public class AsassinMovement : MonoBehaviour
     [SerializeField] public LayerMask EnemyMask;
     [SerializeField] public Transform attackpointTop;
     [SerializeField] public Transform attackpointDown;
-    
+    [SerializeField] public Transform attackpointLeft;
+
     [Header("Attributes")]
     [SerializeField] public float moveSpeed = 10f;
     [SerializeField] private float attackRange = 5f;
@@ -26,6 +27,7 @@ public class AsassinMovement : MonoBehaviour
     public Transform aa;
 
     private bool canAttack =true;
+    private bool isDead = false;
 
     private bool hasRotatedleft;
     private bool hasRotatedright;
@@ -33,12 +35,16 @@ public class AsassinMovement : MonoBehaviour
     private bool hasRotateddown;
     private void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
     public void die()
     {
-        Debug.Log("Busted");
+        if (isDead) return;
+        enabled = false;
+        isDead = true;
+        Deathsc.instance.openDeathPanel();
+        Time.timeScale = 0;
     }
   
     private void ResetAttackCooldown()
@@ -55,7 +61,7 @@ public class AsassinMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        animator.SetFloat("HorizontalRotation",Mathf.Abs(horizontalInput));
+        animator.SetFloat("HorizontalRotation",horizontalInput);
         animator.SetFloat("VerticalRotation", verticalInput);
 
         Vector2 movement = new Vector2(horizontalInput, verticalInput);
@@ -69,8 +75,6 @@ public class AsassinMovement : MonoBehaviour
         movement *= moveSpeed * Time.deltaTime;
         Vector2 newPosition = rb.position + movement;
 
-        
-        //rb.MovePosition(newPosition);
 
         if (horizontalInput > 0 && !hasRotatedright)
         {
@@ -79,13 +83,10 @@ public class AsassinMovement : MonoBehaviour
         }
         else if (horizontalInput < 0 && !hasRotatedleft)
         {
-            aa = attackPoint;
+            aa = attackpointLeft;
             rotateLeft();
         }
-        else if (horizontalInput == 0 && verticalInput == 0)
-        {
-            //returnNormal();
-        }
+
 
         if (verticalInput > 0 && !hasRotatedup)
         {
@@ -113,6 +114,10 @@ public class AsassinMovement : MonoBehaviour
         else if (hasRotateddown == true)
         {
             animator.SetTrigger("AttackDown");
+        }
+        else if (hasRotatedleft == true)
+        {
+            animator.SetTrigger("AttackLeft");
         }
         else
             animator.SetTrigger("Attack");
@@ -156,10 +161,7 @@ public class AsassinMovement : MonoBehaviour
 
     void rotateRight()
     {
-        Vector3 RotateRight = transform.rotation.eulerAngles;
-        RotateRight.y = 0;
-        RotateRight.z = 0;
-        transform.rotation = Quaternion.Euler(RotateRight);
+       
         hasRotatedleft = false;
         hasRotatedright = true;
         hasRotateddown = false;
@@ -167,10 +169,7 @@ public class AsassinMovement : MonoBehaviour
     }
     void rotateLeft()
     {
-        Vector3 RotateLeft = transform.rotation.eulerAngles;
-        RotateLeft.y += 180f;
-        RotateLeft.z = 0;
-        transform.rotation = Quaternion.Euler(RotateLeft);
+     
         hasRotatedleft = true;
         hasRotatedright = false;
         hasRotateddown = false;
@@ -179,10 +178,6 @@ public class AsassinMovement : MonoBehaviour
 
     void rotateUp()
     {
-        //Vector3 Rotate = transform.rotation.eulerAngles;
-        //Rotate.z += 90;
-        //Rotate.y = 0;
-        //transform.rotation = Quaternion.Euler(Rotate);
         hasRotateddown = false;
         hasRotatedup = true;
         hasRotatedleft = false;
@@ -191,10 +186,6 @@ public class AsassinMovement : MonoBehaviour
 
     void rotateDown()
     {
-        //Vector3 Rotate = transform.rotation.eulerAngles;
-        //Rotate.z -= 90f;
-        //Rotate.y = 0;
-        //transform.rotation = Quaternion.Euler(Rotate);
         hasRotateddown = true;
         hasRotatedup = false;
         hasRotatedleft = false;
