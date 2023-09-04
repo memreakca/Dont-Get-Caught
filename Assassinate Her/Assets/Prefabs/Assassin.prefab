@@ -505,7 +505,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3111485212568882570}
-  - component: {fileID: 3111485212568882569}
   m_Layer: 7
   m_Name: AttackpointHorizontal
   m_TagString: Untagged
@@ -528,18 +527,6 @@ Transform:
   m_Father: {fileID: 3111485212902476450}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3111485212568882569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111485212568882571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11125562de19c444cad2c4070cb660fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3111485212902476462
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +654,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015356049, y: -0.08175309}
+  m_Offset: {x: -0.015222013, y: -0.091530666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -678,7 +665,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.350499, y: 0.31638715}
+  m_Size: {x: 0.28812695, y: 0.27546117}
   m_EdgeRadius: 0
 --- !u!114 &3111485212902476461
 MonoBehaviour:
@@ -706,7 +693,10 @@ MonoBehaviour:
   attackRange: 0.15
   attackCD: 1
   attackDamage: 1
+  invisDuration: 1
+  invisCd: 15
   aa: {fileID: 3111485212568882570}
+  isInvincible: 0
 --- !u!95 &3111485212902476448
 Animator:
   serializedVersion: 4
@@ -736,7 +726,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3111485212962957712}
-  - component: {fileID: 3111485212962957719}
   m_Layer: 7
   m_Name: AttackpointVerticalTOP
   m_TagString: Untagged
@@ -759,18 +748,6 @@ Transform:
   m_Father: {fileID: 3111485212902476450}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3111485212962957719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111485212962957713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11125562de19c444cad2c4070cb660fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3111485213101593899
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +757,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3111485213101593898}
-  - component: {fileID: 3111485213101593897}
   m_Layer: 7
   m_Name: AttackpointVerticalDOWN
   m_TagString: Untagged
@@ -803,18 +779,6 @@ Transform:
   m_Father: {fileID: 3111485212902476450}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3111485213101593897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111485213101593899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11125562de19c444cad2c4070cb660fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3111485213197538084
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +788,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3111485213197538139}
-  - component: {fileID: 3111485213197538138}
   m_Layer: 7
   m_Name: AttackpointHorizontalLeft
   m_TagString: Untagged
@@ -847,15 +810,3 @@ Transform:
   m_Father: {fileID: 3111485212902476450}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3111485213197538138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111485213197538084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11125562de19c444cad2c4070cb660fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         Collider2D[] hitplayer = Physics2D.OverlapCircleAll(attackP.position, attackRange, EnemyMask);
         foreach(Collider2D player in hitplayer)
         {
-            if(isAlive == true)
+            if (isAlive == true && AsassinMovement.main.isInvincible == false)
             AsassinMovement.main.die();
         }
     }

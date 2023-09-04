@@ -23,8 +23,15 @@ public class AsassinMovement : MonoBehaviour
     [SerializeField] private float attackRange = 5f;
     [SerializeField] private float attackCD = 2f;
     [SerializeField] private float attackDamage = 1f;
+    [SerializeField] private float invisDuration = 1f;
+    [SerializeField] private float invisCd = 15f;
+    private float timelastInvis = 0.0f;
 
     public Transform aa;
+
+    public bool isInvincible = false;
+    private bool canInvis = true;
+    
 
     private bool canAttack =true;
     private bool isDead = false;
@@ -38,6 +45,23 @@ public class AsassinMovement : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private void goInvis()
+    {
+        if (Level.level4lock == true)
+        {
+            if (canInvis)
+            {
+                isInvincible = true;
+                canInvis = false;
+                Invoke("invisDur", invisDuration);
+
+                sr.color = new Color(1f, 1f, 1f, 0.5f);
+
+                timelastInvis = 0f;
+            }
+        }
+    }
+
     public void die()
     {
         if (isDead) return;
@@ -46,18 +70,39 @@ public class AsassinMovement : MonoBehaviour
         Deathsc.instance.openDeathPanel();
         Time.timeScale = 0;
     }
-  
+    
+    private void invisDur()
+    {
+        sr.color = new Color(1f, 1f, 1f, 1f);
+        isInvincible = false;
+    }
+    private void ResetInvis()
+    {
+        if(timelastInvis >= invisCd)
+        {
+            canInvis = true;
+        }
+
+    }
     private void ResetAttackCooldown()
     {
         canAttack = true;
     }
     private void Update()
     {
+        ResetInvis();
+        timelastInvis += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.F) && canAttack)
         {
             Attack();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.G) && canInvis)
+        {
+            goInvis();
+        }
+
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
