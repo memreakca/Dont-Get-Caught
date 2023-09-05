@@ -693,8 +693,9 @@ MonoBehaviour:
   attackRange: 0.15
   attackCD: 1
   attackDamage: 1
-  invisDuration: 1
-  invisCd: 15
+  invisDuration: 3
+  invisCd: 14
+  timelastInvis: 0
   aa: {fileID: 3111485212568882570}
   isInvincible: 0
 --- !u!95 &3111485212902476448

@@ -23,9 +23,9 @@ public class AsassinMovement : MonoBehaviour
     [SerializeField] private float attackRange = 5f;
     [SerializeField] private float attackCD = 2f;
     [SerializeField] private float attackDamage = 1f;
-    [SerializeField] private float invisDuration = 1f;
-    [SerializeField] private float invisCd = 15f;
-    private float timelastInvis = 0.0f;
+    [SerializeField] public float invisDuration = 1f;
+    [SerializeField] public float invisCd = 15f;
+    public float timelastInvis = 0.0f;
 
     public Transform aa;
 
@@ -43,6 +43,7 @@ public class AsassinMovement : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        timelastInvis = invisCd;
     }
 
     private void goInvis()
